@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Add this in the head section of your HTML file -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link href="./agent.component.css" rel="stylesheet">
+  <style>
+    .jumbotron {
+      background-color: rgba(255, 255, 255, 0.5); /* Adjust the last value (0.7) for opacity */
+    }
+    .center-image {
+      text-align: center;
+    }
+
+  </style>
+</head>
+
+<body class="linear-background">
+<div class="">
+  <div class="jumbotron center-image">
+    <h1 class="display-4">Bienvenue sur MyRH</h1>
+    <hr class="my-4">
+    <img style="width: 10%;" src="https://png.pngtree.com/png-clipart/20221223/original/pngtree-job-vacancies-images-png-image_8799592.png" alt="MyRH Image" class="img-fluid">
+  </div>
+
+
+  <h2>Liste des Offres en Attente</h2>
+  <div class="card-deck">
+    <!-- Use ngFor to iterate through the list of job offers -->
+    <div class="card" *ngFor="let offre of offresEnAttente">
+      <div class="card-body">
+        <img style="width: 70%" src="{{ offre.societe.image }}">
+        <h5 class="card-title">{{ offre.titre }}</h5>
+        <p class="card-text">{{ offre.description }}</p>
+        <div class="action-buttons">
+          <button class="btn btn-success btn-sm" (click)="accepterOffre(offre.id)">Accepter</button>
+          <button class="btn btn-danger btn-sm" (click)="refuserOffre(offre.id)">Refuser</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

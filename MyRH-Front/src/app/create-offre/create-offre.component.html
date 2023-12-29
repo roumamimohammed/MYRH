@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <title>Votre Titre</title>
+  <style>
+    .jumbotron {
+      background-color: rgba(255, 255, 255, 0.0); /* Adjust the last value (0.7) for opacity */
+    }
+    .center-image {
+      text-align: center;
+    }
+
+  </style>
+</head>
+<div *ngIf="authService.isAuthenticated()">
+  <!-- Votre contenu de création d'offre ici -->
+
+<body>
+
+  <div class="">
+    <div class="jumbotron center-image">
+      <h1 class="display-4">Bienvenue sur MyRH</h1>
+      <hr class="my-4">
+      <img style="width: 10%;" src="https://png.pngtree.com/png-clipart/20221223/original/pngtree-job-vacancies-images-png-image_8799592.png" alt="MyRH Image" class="img-fluid">
+    </div>
+  <div class="row">
+    <!-- Première colonne pour la première div -->
+    <div class="col-md-6">
+      <h5 class="card-title">Societe</h5>
+      <div *ngIf="societeDetails" class="card">
+        <img style="width: 100%" src="{{ societeDetails.image }}" class="card-img-top img-fluid" alt="Societe Image">
+        <div class="card-body">
+          <h5 class="card-title">Ville: {{ societeDetails.address }}</h5>
+          <h5 class="card-title">Email: {{ societeDetails.email }}</h5>
+          <h5 class="card-title">Telephone: {{ societeDetails.phoneNumber }}</h5>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deuxième colonne pour le formulaire -->
+    <div class="col-md-6">
+      <form (ngSubmit)="submitIncreation()" class="card">
+        <div class="card-body">
+          <h2 class="card-title">Nouvelle Offre</h2>
+
+          <div class="form-group">
+            <label for="titre">Titre:</label>
+            <input type="text" id="titre" name="titre" [(ngModel)]="offreData.titre" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" [(ngModel)]="offreData.description" class="form-control" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="profilRecherche">Profil Recherche:</label>
+            <input type="text" id="profilRecherche" name="profilRecherche" [(ngModel)]="offreData.profilRecherche" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for="ville">Ville:</label>
+            <input type="text" id="ville" name="ville" [(ngModel)]="offreData.ville" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for="niveauEtude">Niveau d'Étude:</label>
+            <input type="text" id="niveauEtude" name="niveauEtude" [(ngModel)]="offreData.niveauEtude" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for="salaire">Salaire:</label>
+            <input type="number" id="salaire" name="salaire" [(ngModel)]="offreData.salaire" class="form-control" required>
+          </div>
+
+          <!-- Utilisez l'opérateur de navigation sécurisée (?) pour les propriétés imbriquées -->
+          <div class="form-group" *ngIf="societeDetails">
+            <label for="societeId">Société:</label>
+            <select id="societeId" class="form-select mb-4" [(ngModel)]="offreData.societe.id" name="societeId">
+              <option [value]="societeDetails.id">{{ societeDetails.address }}</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Ajouter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</div>
+<div *ngIf="!authService.isAuthenticated()">
+  <p>Veuillez vous connecter pour accéder à cette page.</p>
+</div>
+</html>
