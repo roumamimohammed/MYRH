@@ -1,0 +1,50 @@
+<!-- login.component.html -->
+<style>
+  .jumbotron {
+    background-color: rgba(255, 255, 255, 0.0); /* Adjust the last value (0.7) for opacity */
+  }
+  .center-image {
+    text-align: center;
+  }
+
+</style>
+<body>
+<div class="">
+  <div class="jumbotron center-image">
+    <h1 class="display-4">Bienvenue sur MyRH</h1>
+    <hr class="my-4">
+    <img style="width: 10%;" src="https://png.pngtree.com/png-clipart/20221223/original/pngtree-job-vacancies-images-png-image_8799592.png" alt="MyRH Image" class="img-fluid">
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="text-center">MyRH</h2>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="login()">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email:</label>
+              <input type="email" id="email" name="email" [(ngModel)]="loginRequest.email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Mot de passe:</label>
+              <input type="password" id="password" name="password" [(ngModel)]="loginRequest.password" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="codeValidation" class="form-label">Code de validation:</label>
+              <input type="text" id="codeValidation" name="codeValidation" [(ngModel)]="loginRequest.codeValidation" class="form-control" required>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Se connecter</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
